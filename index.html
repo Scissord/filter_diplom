@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Фильтр нижних частот Чебышева</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.4.1/backbone.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jointjs/3.6.5/joint.js"></script>
+	
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+</head>
+<body>
+  <h1>Фильтр нижних частот Чебышева</h1>
+  <p>
+		Введите значения параметров фильтра ниже, чтобы рассчитать значения компонентов.
+	</p>
+  <div>
+    <label for="R1">Сопротивление генератора - R1:</label>
+    <input type="number" id="R1" min="1" max="10000" value="1000">
+  </div>
+  <div>
+    <label for="R2">Сопротивление нагрузки - R2:</label>
+    <input type="number" id="R2" min="1" max="1000" value="1000">
+  </div>
+  <div>
+    <label for="A">Максимальная неравномерность АЧХ в полосе пропускания в децибелах - Ap:</label>
+    <input type="number" id="A" min="1" max="100" value="2">
+  </div>
+  <div>
+    <label for="f">Частота среза фильтра - f:</label>
+    <input type="number" id="f" min="1" max="100000" value="1000">
+  </div>
+  <div>
+    <label for="n">Порядок фильтра - n:</label>
+    <input type="number" id="n" min="1" max="9" value="4">
+  </div>
+  <div id="filter">
+    <div>
+      <label for="r1">Сопротивление входа - R1:</label>
+      <span id="r1"></span>
+    </div>
+		<div>
+      <label for="r2">Сопротивление выхода - R2:</label>
+      <span id="r2"></span>
+    </div>
+		<div>
+      <label for="L">L: <br></label>
+      <span id="L"></span>
+    </div>
+		<div>
+      <label for="C">C: <br></label>
+      <span id="C"></span>
+    </div>
+  </div>
+	<div id="myChain"></div>
+	<div id="myChart"></div>
+<script type="module" src="./app.js"></script>
+<script type="module" src="./chebyshev.js"></script>
+<script type="module" src="./plotly.js"></script>
+</body>
+</html>
