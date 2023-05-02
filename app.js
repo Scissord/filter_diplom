@@ -3,6 +3,11 @@ import { drawChain } from './chains/chain1.js';
 import { drawChain2 } from './chains/chain2.js';
 import { drawChain3 } from './chains/chain3.js';
 import { drawChain4 } from './chains/chain4.js';
+import { drawChain5 } from './chains/chain5.js';
+import { drawChain6 } from './chains/chain6.js';
+import { drawChain7 } from './chains/chain7.js';
+import { drawChain8 } from './chains/chain8.js';
+import { drawChain9 } from './chains/chain9.js';
 import { calculatelowfilt } from './chebyshev.js';
 import { drawPlot } from './plotly.js';
 import { calc_S2P } from './chebyshev.js';
@@ -28,6 +33,16 @@ function updateFilter() {
   const f = document.getElementById("f").value;
   const n = document.getElementById("n").value;
 
+	var input = document.getElementById('n');
+	input.addEventListener('input', function() {
+    if (input.value < 1) {
+      input.value = 1;
+    }
+    if (input.value > 9) {
+      input.value = 9;
+    }
+  });
+	
 	const result = calculatelowfilt(S_Filter, n, R1, R2, f, A);
 	const resultL = result.C.map((element, idx) => `Элемент ${idx + 1} : L = ${element} нГн <br>`);
 	const resultC = result.L.map((element, idx) => `Элемент ${idx + 1} : C = ${element} пФ <br>`);
@@ -54,6 +69,16 @@ function updateFilter() {
 		drawChain3(n, R1, R2);
 	}else if(N == 4){
 		drawChain4(n, R1, R2);
+	}else if(N == 5){
+		drawChain5(n, R1, R2);
+	}else if(N == 6){
+		drawChain6(n, R1, R2);
+	}else if(N == 7){
+		drawChain7(n, R1, R2);
+	}else if(N == 8){
+		drawChain8(n, R1, R2);
+	}else if(N == 9){
+		drawChain9(n, R1, R2);
 	}
 }
 

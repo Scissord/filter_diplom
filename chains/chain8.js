@@ -1,4 +1,4 @@
-export function drawChain4(n, R1, R2) {
+export function drawChain8(n, R1, R2) {
 	const N = Number.parseFloat(n);
 	const r1 = Number.parseFloat(R1);
 	const r2 = Number.parseFloat(R2);
@@ -82,28 +82,55 @@ export function drawChain4(n, R1, R2) {
 	}
 	var L1 = createRectangle(130, 10, 40, 20, 'L1');
 	var L2 = createRectangle(210, 10, 40, 20, 'L2');
+	var L3 = createRectangle(300, 10, 40, 20, 'L3');
+	var L4 = createRectangle(400, 10, 40, 20, 'L4');
 
 	var C1 = createRectangle(105, 65, 20, 40, 'C1');
 	var C2 = createRectangle(180, 65, 20, 40, 'C2');
+	var C3 = createRectangle(265, 65, 20, 40, 'C3');
+	var C4 = createRectangle(360, 65, 20, 40, 'C4');
 	
 	var Rin = createRectangle(50, 10, 40, 20, 'Rin');
-	var Rout = createRectangle(260, 65, 30, 40, 'Rout');
-	
+	var Rout = createRectangle(455, 65, 30, 40, 'Rout');
 
 	var hiddenCircleUp1 = createCircle(30, 20);
 	var hiddenCircleUp2 = createCircle(115, 20);
 	var hiddenCircleUp3 = createCircle(190, 20);
 	var hiddenCircleUp4 = createCircle(275, 20);
+	var hiddenCircleUp5 = createCircle(370, 20);
+	var hiddenCircleUp6 = createCircle(470, 20);
 	var hiddenCircleDown1 = createCircle(30, 150);
 	var hiddenCircleDown2 = createCircle(115, 150);
 	var hiddenCircleDown3 = createCircle(190, 150);
 	var hiddenCircleDown4 = createCircle(275, 150);
+	var hiddenCircleDown5 = createCircle(370, 150);
+	var hiddenCircleDown6 = createCircle(470, 150);
+
+	var link = createLink(Rout, hiddenCircleDown6);
+
+	var link = createLink(hiddenCircleDown5, hiddenCircleDown6);
+
+	var link = createLink(hiddenCircleUp6, Rout);
+
+	var link = createLink(L4, hiddenCircleUp6);
+
+	var link = createLink(hiddenCircleUp5, L4);
+
+	var link = createLink(hiddenCircleDown5, C4);
+
+	var link = createLink(hiddenCircleDown5, hiddenCircleDown4);
+
+	var link = createLink(hiddenCircleUp5, C4);
+
+	var link = createLink(L3, hiddenCircleUp5);
+
+	var link = createLink(hiddenCircleUp4, L3);
 
 	var link = createLink(hiddenCircleDown3, hiddenCircleDown4);
 
-	var link = createLink(Rout, hiddenCircleDown4);
+	var link = createLink(C3, hiddenCircleDown4);
 
-	var link = createLink(Rout, hiddenCircleUp4);
+	var link = createLink(C3, hiddenCircleUp4);
 
 	var link = createLink(L2, hiddenCircleUp4);
 
