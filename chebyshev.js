@@ -271,29 +271,29 @@ export function calc_S2P(S_Filter, Freq){
 
 			s220 = math.divide(fifthAction, sixthAction);
 
-			const firstJopa = math.multiply(a2, s12);
+			const firstJ = math.multiply(a2, s12);
 
 			const absedGamma1 = math.pow(math.abs(Gamma1), 2);
 
-			const thirdJopa = math.evaluate(`1 - ${absedGamma1}`);
+			const thirdJ = math.evaluate(`1 - ${absedGamma1}`);
 			
-			const fourthJopa = math.multiply(firstJopa, thirdJopa);
+			const fourthJ = math.multiply(firstJ, thirdJ);
 
-			const fifthJopa = math.multiply(a1, D);
+			const fifthJ = math.multiply(a1, D);
 
-			s120 = math.divide(fourthJopa, fifthJopa);
+			s120 = math.divide(fourthJ, fifthJ);
 
-			const firstNegr = math.multiply(a1, s21);
+			const firstN = math.multiply(a1, s21);
 
 			const absedGamma2 = math.pow(math.abs(Gamma2), 2);
 
-			const secondNegr = math.evaluate(`1 - ${absedGamma2}`);
+			const secondN = math.evaluate(`1 - ${absedGamma2}`);
 
-			const fourthNegr = math.multiply(firstNegr, secondNegr);
+			const fourthN = math.multiply(firstN, secondN);
 
-			const fifthNegr = math.multiply(a2, D);
+			const fifthN = math.multiply(a2, D);
 
-			s210 = math.divide(fourthNegr, fifthNegr);
+			s210 = math.divide(fourthN, fifthN);
 		} else {
 			s110 = s11;
 			s120 = s12;
