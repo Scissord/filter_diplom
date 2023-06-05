@@ -1,15 +1,12 @@
 import { calc_S2P } from "./chebyshev.js";
 
-// трай перевода из matlab
 export function drawPlot(Freq, {s11, s12}) {
-	// определение объектов для графиков
 	const trace1 = {
-		x: Freq,
+		x: Freq,	
 		y: s11,
 		name: 'S11',
 		type: 'scatter',
 		yaxis: 'y2',
-		//mode: 'markers',
 		line: { color	: 'red' }
 	};
 
@@ -23,10 +20,8 @@ export function drawPlot(Freq, {s11, s12}) {
 		line: { color: 'blue' }
 	};
 
-	// объединение объектов в массив data
 	const data = [trace1, trace2];
 
-	// определение настроек для осей X и Y
 	const layout = {
 		title: 'Filter S-parameters',
 		xaxis: {
@@ -46,6 +41,5 @@ export function drawPlot(Freq, {s11, s12}) {
 		}
 	};
 
-	// создание графика
 	Plotly.newPlot('myChart', data, layout);
 }
