@@ -80,11 +80,64 @@ export function drawChain4(n, R1, R2) {
 		link.addTo(graph);
 		return link;
 	}
-	var L1 = createRectangle(130, 10, 40, 20, 'L1');
-	var L2 = createRectangle(210, 10, 40, 20, 'L2');
 
-	var C1 = createRectangle(105, 65, 20, 40, 'C1');
-	var C2 = createRectangle(180, 65, 20, 40, 'C2');
+	const createCapacitor = (x, y, w, h) => {
+		const capacitor = new joint.shapes.basic.Path({
+			markup:
+				'<g class="rotatable"><g class="scalable"><path class="body"/></g><text class="label"/></g>',
+			size: { width: w, height: h },
+			position: { x, y },
+			attrs: {
+				'.body': {
+					d: `M0,${h / 2} L${w}, ${h / 2} M0,${h / 4} L${w},${h / 4}	`,
+					fill: 'transparent',
+					stroke: 'black',
+					'stroke-width': 0.5,
+				},
+			},
+		});
+	
+		capacitor.addTo(graph);
+		return capacitor;
+	};
+
+	function moveElement(element, x, y) {
+		element.position(x, y);
+	}
+	
+	// Создаем элемент Path для половины круга
+	const halfCircle = (pathData) => {
+		const coil = new joint.shapes.basic.Path({
+			size: { width: 15, height: 15 },
+			attrs: {
+				path: { d: pathData },
+				stroke: 'black',
+			},
+		});
+		coil.addTo(graph);
+		return coil;
+	}; 
+
+	const createCoil = (x1, y1, x2, y2, x3, y3) => {
+		var firstCoil = halfCircle('M0 25 A15 15 0 0 1 50 25')
+		moveElement(firstCoil, x1, y1)
+		var secondCoil = halfCircle('M0 25 A15 15 0 0 1 50 25')
+		moveElement(secondCoil, x2, y2)
+		var thirdCoil = halfCircle('M0 25 A15 15 0 0 1 50 25')
+		moveElement(thirdCoil, x3, y3)
+	}
+
+	var hiddenCircleL1Start = createCircle(130, 20);
+	var hiddenCircleL1End = createCircle(175, 20);
+
+	var hiddenCircleL2Start = createCircle(210, 20);
+	var hiddenCircleL2End = createCircle(255, 20);
+
+	var L1 = createCoil(130, 5, 145, 5, 160, 5);
+	var L2 = createCoil(210, 5, 225, 5, 240, 5);
+
+	var C1 = createCapacitor(105, 65, 20, 10);
+	var C2 = createCapacitor(180, 65, 20, 10);
 	
 	var Rin = createRectangle(50, 10, 40, 20, 'Rin');
 	var Rout = createRectangle(260, 65, 30, 40, 'Rout');
@@ -99,15 +152,19 @@ export function drawChain4(n, R1, R2) {
 	var hiddenCircleDown3 = createCircle(190, 150);
 	var hiddenCircleDown4 = createCircle(275, 150);
 
+	var link = createLink(hiddenCircleUp3, hiddenCircleL2Start);
+	
+	var link = createLink(hiddenCircleUp4, hiddenCircleL2End);
+
+	var link = createLink(hiddenCircleUp2, hiddenCircleL1Start);
+	
+	var link = createLink(hiddenCircleUp3, hiddenCircleL1End);
+
 	var link = createLink(hiddenCircleDown3, hiddenCircleDown4);
 
 	var link = createLink(Rout, hiddenCircleDown4);
 
 	var link = createLink(Rout, hiddenCircleUp4);
-
-	var link = createLink(L2, hiddenCircleUp4);
-
-	var link = createLink(hiddenCircleUp3, L2);
 
 	var link = createLink(hiddenCircleDown1, hiddenCircleDown2);
 
@@ -128,8 +185,4 @@ export function drawChain4(n, R1, R2) {
 	var link = createLink(hiddenCircleUp1, Rin);
 	
 	var link = createLink(Rin, hiddenCircleUp2);
-	
-	var link = createLink(hiddenCircleUp2, L1);
-
-	var link = createLink(L1, hiddenCircleUp3);
 }

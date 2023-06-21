@@ -1,0 +1,42 @@
+$main-color: rgba(0, 0, 0, 0.834);
+$font: 'Comfortaa', cursive;
+%visual {
+    color: $main-color;
+    font-family: $font;
+}
+
+h1 {
+    @extend %visual;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.input-param {
+    @extend %visual;
+    background: #0000001c;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 30px;
+    border: 4px;
+    border-style: solid;
+    max-width: 800px;
+    border-image:url("data:image/svg+xml;charset=utf-8,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cstyle%3Epath%7Banimation:stroke 3s infinite linear%3B%7D%40keyframes stroke%7Bto%7Bstroke-dashoffset:776%3B%7D%7D%3C/style%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%232d3561' /%3E%3Cstop offset='25%25' stop-color='%23c05c7e' /%3E%3Cstop offset='50%25' stop-color='%23f3826f' /%3E%3Cstop offset='100%25' stop-color='%23ffb961' /%3E%3C/linearGradient%3E %3Cpath d='M1.5 1.5 l97 0l0 97l-97 0 l0 -97' stroke-linecap='square' stroke='url(%23g)' stroke-width='3' stroke-dasharray='388'/%3E %3C/svg%3E") 1;
+    &__desc{
+        font-size: 30px;
+    }
+}
+.elements {
+    @extend %visual;
+    margin-left: auto;
+    margin-right: auto;
+    background: #0000001c;
+    max-width: 250px;
+    border: 2px;
+    border-style: solid;
+    border-color: #00000068;
+}
+#myChain {
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -80,6 +80,51 @@ export function drawChain3(n, R1, R2) {
 		link.addTo(graph);
 		return link;
 	}
+	const createCapacitor = (x, y, w, h) => {
+		const capacitor = new joint.shapes.basic.Path({
+			markup:
+				'<g class="rotatable"><g class="scalable"><path class="body"/></g><text class="label"/></g>',
+			size: { width: w, height: h },
+			position: { x, y },
+			attrs: {
+				'.body': {
+					d: `M0,${h / 2} L${w}, ${h / 2} M0,${h / 4} L${w},${h / 4}	`,
+					fill: 'transparent',
+					stroke: 'black',
+					'stroke-width': 0.5,
+				},
+			},
+		});
+	
+		capacitor.addTo(graph);
+		return capacitor;
+	};
+
+	function moveElement(element, x, y) {
+		element.position(x, y);
+	}
+	
+	// Создаем элемент Path для половины круга
+	const halfCircle = (pathData) => {
+		const coil = new joint.shapes.basic.Path({
+			size: { width: 15, height: 15 },
+			attrs: {
+				path: { d: pathData },
+				stroke: 'black',
+			},
+		});
+		coil.addTo(graph);
+		return coil;
+	}; 
+
+	const createCoil = (x1, y1, x2, y2, x3, y3) => {
+		var firstCoil = halfCircle('M0 25 A15 15 0 0 1 50 25')
+		moveElement(firstCoil, x1, y1)
+		var secondCoil = halfCircle('M0 25 A15 15 0 0 1 50 25')
+		moveElement(secondCoil, x2, y2)
+		var thirdCoil = halfCircle('M0 25 A15 15 0 0 1 50 25')
+		moveElement(thirdCoil, x3, y3)
+	}
 
 	var hiddenCircleUp1 = createCircle(30, 20);
 	var hiddenCircleDown1 = createCircle(30, 150);
@@ -87,10 +132,12 @@ export function drawChain3(n, R1, R2) {
 	var Rin = createRectangle(50, 10, 40, 20, 'Rin');
 
 	if(N == 3 && r1 > r2){
-		var L1 = createRectangle(130, 10, 40, 20, 'L1');
+		var hiddenCircleL1Start = createCircle(130, 20);
+		var hiddenCircleL1End = createCircle(175, 20);
+		var L1 = createCoil(130, 5, 145, 5, 160, 5);
 
-		var C1 = createRectangle(105, 65, 20, 40, 'C1');
-		var C2 = createRectangle(180, 65, 20, 40, 'C2');
+		var C1 = createCapacitor(105, 65, 20, 10);
+		var C2 = createCapacitor(180, 65, 20, 10);
 
 		var Rout = createRectangle(250, 65, 30, 40, 'Rout');
 
@@ -113,11 +160,11 @@ export function drawChain3(n, R1, R2) {
 		
 		var link = createLink(hiddenCircleUp2, C1);
 
-		var link = createLink(hiddenCircleUp2, L1);
+		var link = createLink(hiddenCircleL1End, hiddenCircleUp3);
 
 		var link = createLink(hiddenCircleUp3, C2);
 
-		var link = createLink(L1, hiddenCircleUp3);
+		var link = createLink(hiddenCircleL1Start, hiddenCircleUp2);
 
 		var link = createLink(hiddenCircleDown1, hiddenCircleDown2);
 
@@ -128,10 +175,17 @@ export function drawChain3(n, R1, R2) {
 		var link = createLink(C2, hiddenCircleDown3);
 	} else if(N == 3 && r2 >= r1){
 
-		var L1 = createRectangle(110, 10, 40, 20, 'L1');
-		var L2 = createRectangle(190, 10, 40, 20, 'L2');
+		var hiddenCircleL1Start = createCircle(110, 20);
+		var hiddenCircleL1End = createCircle(155, 20);
 
-		var C1 = createRectangle(160, 65, 20, 40, 'C1');
+		var hiddenCircleL2Start = createCircle(190, 20);
+		var hiddenCircleL2End = createCircle(235, 20);
+
+		var L1 = createCoil(110, 5, 125, 5, 140, 5);
+		var L2 = createCoil(190, 5, 205, 5, 220, 5);
+
+		//var C1 = createRectangle(160, 65, 20, 40, 'C1');
+		var C1 = createCapacitor(160, 65, 20, 10);
 
 		var Rout = createRectangle(235, 65, 30, 40, 'Rout');
 
@@ -139,20 +193,20 @@ export function drawChain3(n, R1, R2) {
 		var hiddenCircleUp3 = createCircle(250, 20);
 		var hiddenCircleDown2 = createCircle(170, 150);
 		var hiddenCircleDown3 = createCircle(250, 150);
+
+		var link = createLink(hiddenCircleL2Start, hiddenCircleUp2)
+
+		var link = createLink(hiddenCircleL2End, hiddenCircleUp3)
+
+		var link = createLink(Rin, hiddenCircleL1Start)
+
+		var link = createLink(hiddenCircleL1End, hiddenCircleUp2)
 		
-		var link = createLink(Rin, L1);
-
-		var link = createLink(L1, hiddenCircleUp2);
-
 		var link = createLink(hiddenCircleUp2, C1);
 
 		var link = createLink(C1, hiddenCircleDown2);
 
 		var link = createLink(hiddenCircleDown1, hiddenCircleDown2);
-
-		var link = createLink(hiddenCircleUp2, L2);
-
-		var link = createLink(hiddenCircleUp3, L2);
 
 		var link = createLink(hiddenCircleUp3, Rout);
 

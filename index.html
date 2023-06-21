@@ -9,49 +9,71 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.4.1/backbone.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jointjs/3.6.5/joint.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/s.css">
+  
 	
 	<script src="https://d3js.org/d3.v7.min.js"></script>
+
 	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
 </head>
 <body>
   <h1>Фильтр нижних частот Чебышева</h1>
-  <p>
-		Введите значения параметров фильтра ниже, чтобы рассчитать значения компонентов.
-	</p>
-  <div>
-    <label for="R1">Сопротивление генератора - R1:</label>
-    <input type="number" id="R1" min="1" max="10000" value="1000">
-  </div>
-  <div>
-    <label for="R2">Сопротивление нагрузки - R2:</label>
-    <input type="number" id="R2" min="1" max="1000" value="100">
-  </div>
-  <div>
-    <label for="A">Максимальная неравномерность АЧХ в полосе пропускания в децибелах - Ap:</label>
-    <input type="number" id="A" min="1" max="100" value="2">
-  </div>
-  <div>
-    <label for="f">Частота среза фильтра - f:</label>
-    <input type="number" id="f" min="1" max="100000" value="1000">
-  </div>
-  <div>
-    <label for="n">Порядок фильтра - n:</label>
-    <input type="number" id="n" min="1" max="9" value="5">
-  </div>
-  <div id="filter">
-		<div>
-      <label for="L">L: <br></label>
-      <span id="L"></span>
+  <section class="input-param">
+    <h3 class="input-param__desc">
+      Введите значения параметров фильтра, чтобы рассчитать значения компонентов.
+    </h3>
+    <div>
+      <label for="R1">Сопротивление генератора - R1:</label>
+      <input type="number" id="R1" min="1" max="10000" value="1000">
     </div>
-		<div>
-      <label for="C">C: <br></label>
-      <span id="C"></span>
+    <div>
+      <label for="R2">Сопротивление нагрузки - R2:</label>
+      <input type="number" id="R2" min="1" max="1000" value="100">
     </div>
+    <div>
+      <label for="A">Максимальная неравномерность АЧХ в полосе пропускания в децибелах - Ap:</label>
+      <input type="number" id="A" min="1" max="100" value="2">
+    </div>
+    <div>
+      <label for="f">Частота среза фильтра - f:</label>
+      <input type="number" id="f" min="1" max="100000" value="1000">
+    </div>
+    <div>
+      <label for="n">Порядок фильтра - n:</label>
+      <input type="number" id="n" min="1" max="9" value="5">
+    </div>
+    <div id="filter">
+      <div>
+        <label for="r1">Сопротивление входа - R1:</label>
+        <span id="r1"></span>
+      </div>
+      <div>
+        <label for="r2">Сопротивление выхода - R2:</label>
+        <span id="r2"></span>
+      </div>
+    </section>
+    <br>
+    <section class="elements">
+      <div>
+        <label for="L">L: <br></label>
+        <span id="L"></span>
+      </div>
+      <div>
+        <label for="C">C: <br></label>
+        <span id="C"></span>
+      </div>
+  </section>
   </div>
-	<div id="myChain"></div>
-	<div id="myChart"></div>
+  <section class="graphs">
+    <div id="myChart"></div>
+    <div id="myChain"></div>
+  </section>
 <script type="module" src="./app.js"></script>
 <script type="module" src="./chebyshev.js"></script>
 <script type="module" src="./plotly.js"></script>

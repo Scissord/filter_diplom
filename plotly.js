@@ -6,7 +6,7 @@ export function drawPlot(Freq, {s11, s12}) {
 		y: s11,
 		name: 'S11',
 		type: 'scatter',
-		yaxis: 'y2',
+		yaxis: 'y1',
 		line: { color	: 'red' }
 	};
 
@@ -34,6 +34,7 @@ export function drawPlot(Freq, {s11, s12}) {
 			range: [-20, 0]
 		},
 		yaxis2: {
+			overlaying: 'y',
 			title: 'S11 dB',
 			side: 'right',
 			color: 'blue',
